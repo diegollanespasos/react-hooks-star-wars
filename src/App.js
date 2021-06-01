@@ -6,8 +6,8 @@ import MoviesList from "./movies-list-fn";
 /** Copied from React docs, don't touch!!!! */
 const themes = {
   light: {
-    foreground: "#000000",
-    background: "#eeeeee"
+    foreground: "#333333",
+    background: "#444444"
   },
   dark: {
     foreground: "#ffffff",
