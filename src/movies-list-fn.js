@@ -6,6 +6,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 import { ThemeContext, LanguageContext } from "./App";
+import CustomModal from './components/CustomModal/CustomModal.component';
 
 function MoviesList({ additionalMovies }) {
   const [state, setState] = useState({
@@ -16,6 +17,7 @@ function MoviesList({ additionalMovies }) {
   const theme = useContext(ThemeContext);
   const language = useContext(LanguageContext);
   console.log("language ", language);
+
   useEffect(() => {
     /// serviceX.subscribe(user);
     setState({ ...state, loading: true });
@@ -27,6 +29,7 @@ function MoviesList({ additionalMovies }) {
       /// serviceX.unsubscribe(user);
     };
   }, []);
+
   useEffect(() => {
     const newMovie = additionalMovies.length
       ? additionalMovies[additionalMovies.length - 1]
@@ -38,6 +41,7 @@ function MoviesList({ additionalMovies }) {
       });
     }
   }, [additionalMovies]);
+
   useEffect(() => {
     const newDisplayTitle =
       language === "en/us" ? "Star War movies" : "Peliculas de Star Wars";
@@ -46,6 +50,7 @@ function MoviesList({ additionalMovies }) {
   const textStyle = {
     color: theme.foreground
   };
+
   return (
     <>
       <h4>{displayTitle}</h4>
@@ -57,6 +62,7 @@ function MoviesList({ additionalMovies }) {
                 <CardHeader style={textStyle} title={movie.title} />
                 <CardContent>
                   <h4 style={textStyle}>{movie.director}</h4>
+                  <CustomModal movie={movie}/>
                 </CardContent>
               </Card>
             </Grid>
