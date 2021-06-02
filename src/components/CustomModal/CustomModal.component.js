@@ -18,12 +18,16 @@ const CustomModal = ({ movie }) => {
     },[isFetching]);
 
     const getCharactersOfMovie = async () => {
-      const arrEndpoints = movie.characters;
-      const arrPromises = arrEndpoints.map(url => axios.get(url));
-      const response = await Promise.all(arrPromises);
-      const characters = response.map(obj => obj.data);
-      setCharacters(characters);
-      setIsLoading(false);
+      try {
+        const arrEndpoints = movie.characters;
+        const arrPromises = arrEndpoints.map(url => axios.get(url));
+        const response = await Promise.all(arrPromises);
+        const characters = response.map(obj => obj.data);
+        setCharacters(characters);
+        setIsLoading(false);
+      } catch(e){
+        console.log('Error getting characters', e);
+      }
     }
 
     const handleOpen = async () => {
