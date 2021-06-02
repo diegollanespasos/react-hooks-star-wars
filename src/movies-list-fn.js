@@ -16,13 +16,12 @@ function MoviesList({ additionalMovies }) {
   const [displayTitle, setDisplayTitle] = useState("");
   const theme = useContext(ThemeContext);
   const language = useContext(LanguageContext);
-  console.log("language ", language);
 
   useEffect(() => {
     /// serviceX.subscribe(user);
     setState({ ...state, loading: true });
     axios.get("https://swapi.dev/api/films/").then(({ data: { results } }) => {
-      console.log("movies data", results);
+      //  console.log("movies data", results);
       setState({ movies: results, loading: false });
     });
     return () => {
@@ -52,7 +51,7 @@ function MoviesList({ additionalMovies }) {
   };
 
   return (
-    <>
+    <React.Fragment>
       <h4>{displayTitle}</h4>
       <Grid container spacing={3}>
         {state.movies.map((movie) => {
@@ -69,7 +68,7 @@ function MoviesList({ additionalMovies }) {
           );
         })}
       </Grid>
-    </>
+    </React.Fragment>
   );
 }
 
@@ -77,7 +76,7 @@ MoviesList.propTypes = {
   additionalMovies: PropTypes.array
 };
 
-MoviesList.propTypes = {
+MoviesList.defaultProps = {
   additionalMovies: []
 };
 
